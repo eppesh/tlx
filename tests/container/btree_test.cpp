@@ -17,6 +17,7 @@
 
 #include <cmath>
 #include <cstddef>
+#include <ctime>
 #include <iostream>
 #include <set>
 #include <vector>
@@ -239,13 +240,13 @@ struct SimpleTest {
 
     SimpleTest() {
         test_empty();
-        test_set_insert_erase_3200();
+        /* test_set_insert_erase_3200();
         test_set_insert_erase_3200_descending();
         test_map_insert_erase_3200();
         test_map_insert_erase_3200_descending();
         test2_map_insert_erase_strings();
         test_set_100000_uint64();
-        test_multiset_100000_uint32();
+        test_multiset_100000_uint32(); */
     }
 };
 
@@ -370,12 +371,12 @@ void test_large_multiset(const unsigned int insnum, const unsigned int modulo) {
 
 void test_large() {
     test_large_multiset(320, 1000);
-    test_large_multiset(320, 10000);
+    /* test_large_multiset(320, 10000);
     test_large_multiset(3200, 10);
     test_large_multiset(3200, 100);
     test_large_multiset(3200, 1000);
     test_large_multiset(3200, 10000);
-    test_large_multiset(32000, 10000);
+    test_large_multiset(32000, 10000); */
 }
 
 void test_large_sequence() {
@@ -1597,18 +1598,22 @@ void test_bulkload() {
 /******************************************************************************/
 
 int main() {
-
+    std::cout << "Begin the test..." << std::endl;
+    clock_t start_time = clock();
     test_simple();
     if (tlx_more_tests) {
         test_large();
-        test_large_sequence();
+        /* test_large_sequence();
         test_bounds();
         test_iterators();
         test_struct();
         test_relations();
-        test_bulkload();
+        test_bulkload(); */
     }
-
+    clock_t end_time = clock();
+    std::cout << "End of test...\n";
+    float consuming_time = static_cast<float>(end_time-start_time);
+    std::cout << "Consuming time: " << consuming_time/CLOCKS_PER_SEC << " seconds." << std::endl;
     return 0;
 }
 

@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/cmdline_parser.hpp
+iosfwd
+-
+string
+-
+vector
+-
+
+/home/shuaihua/github/tlx/tests/cmdline_parser_example.cpp
+tlx/cmdline_parser.hpp
+-
+iostream
+-
+string
+-
+

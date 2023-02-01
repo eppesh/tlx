@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/define/likely.hpp
+
+..//tlx/die.hpp
+tlx/die/core.hpp
+-
+
+..//tlx/die/core.hpp
+cstring
+-
+iomanip
+-
+sstream
+-
+stdexcept
+-
+string
+-
+
+..//tlx/math/aggregate.hpp
+tlx/define/likely.hpp
+-
+algorithm
+-
+cmath
+-
+limits
+-
+
+/home/shuaihua/github/tlx/tests/math/aggregate_test.cpp
+tlx/math/aggregate.hpp
+-
+iomanip
+-
+tlx/die.hpp
+-
+

@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/counting_ptr.hpp
+algorithm
+-
+atomic
+-
+cassert
+-
+iosfwd
+-
+type_traits
+-
+utility
+-
+
+..//tlx/die.hpp
+tlx/die/core.hpp
+-
+
+..//tlx/die/core.hpp
+cstring
+-
+iomanip
+-
+sstream
+-
+stdexcept
+-
+string
+-
+
+/home/shuaihua/github/tlx/tests/counting_ptr_test.cpp
+tlx/counting_ptr.hpp
+-
+tlx/die.hpp
+-
+

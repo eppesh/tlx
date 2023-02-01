@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/die.hpp
+tlx/die/core.hpp
+-
+
+..//tlx/die/core.hpp
+cstring
+-
+iomanip
+-
+sstream
+-
+stdexcept
+-
+string
+-
+
+..//tlx/multi_timer.hpp
+chrono
+-
+ostream
+-
+vector
+-
+
+/home/shuaihua/github/tlx/tests/multi_timer_test.cpp
+tlx/multi_timer.hpp
+-
+thread
+-
+tlx/die.hpp
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wshadow -Wold-style-cast -std=c++17 -g -W -Wall -Wextra -fPIC  -Wcast-qual -Winit-self -Wnoexcept -Woverloaded-virtual -Wredundant-decls -g   CMakeFiles/tlx_algorithm_multiway_merge_benchmark.dir/algorithm/multiway_merge_benchmark.cpp.o  -o tlx_algorithm_multiway_merge_benchmark ../tlx/libtlx_debug.a -lpthread 

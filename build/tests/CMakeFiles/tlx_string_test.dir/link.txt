@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wshadow -Wold-style-cast -std=c++17 -g -W -Wall -Wextra -fPIC  -Wcast-qual -Winit-self -Wnoexcept -Woverloaded-virtual -Wredundant-decls -g   CMakeFiles/tlx_string_test.dir/string_test.cpp.o  -o tlx_string_test ../tlx/libtlx_debug.a -lpthread 

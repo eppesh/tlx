@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/define/deprecated.hpp
+
+/home/shuaihua/github/tlx/tests/deprecated_test.cpp
+iostream
+-
+tlx/define/deprecated.hpp
+-
+

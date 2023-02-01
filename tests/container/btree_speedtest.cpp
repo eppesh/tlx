@@ -384,7 +384,7 @@ void TestFactory_Map<TestClass>::call_testrunner(size_t items) {
 //! Speed test them!
 int main() {
     {   // Set - speed test only insertion
-
+        std::cout << "Begin the speed test ...\n";
         repeat_until = min_items;
 
         for (size_t items = min_items; items <= max_items; items *= 2)

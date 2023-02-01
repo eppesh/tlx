@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/die.hpp
+tlx/die/core.hpp
+-
+
+..//tlx/die/core.hpp
+cstring
+-
+iomanip
+-
+sstream
+-
+stdexcept
+-
+string
+-
+
+..//tlx/semaphore.hpp
+condition_variable
+-
+mutex
+-
+
+/home/shuaihua/github/tlx/tests/semaphore_test.cpp
+tlx/semaphore.hpp
+-
+tlx/die.hpp
+-
+thread
+-
+

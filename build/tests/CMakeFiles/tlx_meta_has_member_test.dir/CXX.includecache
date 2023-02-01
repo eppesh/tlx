@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/die.hpp
+tlx/die/core.hpp
+-
+
+..//tlx/die/core.hpp
+cstring
+-
+iomanip
+-
+sstream
+-
+stdexcept
+-
+string
+-
+
+..//tlx/meta/has_member.hpp
+
+..//tlx/meta/has_method.hpp
+
+..//tlx/unused.hpp
+
+/home/shuaihua/github/tlx/tests/meta/has_member_test.cpp
+cmath
+-
+cstddef
+-
+string
+-
+tlx/die.hpp
+-
+tlx/meta/has_member.hpp
+-
+tlx/meta/has_method.hpp
+-
+tlx/unused.hpp
+-
+

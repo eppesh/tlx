@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+..//tlx/backtrace.hpp
+tlx/define/attribute_format_printf.hpp
+-
+cstdio
+-
+
+..//tlx/define/attribute_format_printf.hpp
+
+/home/shuaihua/github/tlx/tests/backtrace_test.cpp
+tlx/backtrace.hpp
+-
+map
+-
+

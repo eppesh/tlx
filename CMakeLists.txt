@@ -46,7 +46,7 @@ set(TLX_SOVERSION "0")
 ### Options and Switches
 
 option(TLX_BUILD_TESTS
-  "Build and run tlx's tests." OFF)
+  "Build and run tlx's tests." ON)
 
 option(TLX_USE_GCOV
   "Compile and run tests with gcov for coverage analysis." OFF)
@@ -55,7 +55,7 @@ option(TLX_TRY_COMPILE_HEADERS
   "Test header files for self-sufficiency: try to compile them." OFF)
 
 option(TLX_MORE_TESTS
-  "Run more extensive test." OFF)
+  "Run more extensive test." ON)
 
 option(TLX_WARNINGS_ARE_ERRORS
   "Compile with flags such that warnings are error." OFF)
