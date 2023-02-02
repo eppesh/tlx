@@ -240,8 +240,8 @@ struct SimpleTest {
 
     SimpleTest() {
         test_empty();
-        /* test_set_insert_erase_3200();
-        test_set_insert_erase_3200_descending();
+        test_set_insert_erase_3200();
+        /* test_set_insert_erase_3200_descending();
         test_map_insert_erase_3200();
         test_map_insert_erase_3200_descending();
         test2_map_insert_erase_strings();

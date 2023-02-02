@@ -3672,6 +3672,7 @@ private:
             tlx_die_unless(n->level == 0);
             tlx_die_unless(n->slotuse > 0);
 
+			// 检查n所指向的当前这个叶子节点中key是否有异常
             for (unsigned short slot = 0; slot < n->slotuse - 1; ++slot)
             {
                 tlx_die_unless(key_lessequal(n->key(slot), n->key(slot + 1)));
@@ -3681,6 +3682,7 @@ private:
 
             if (n->next_leaf)
             {
+            	// 检查当前叶子节点最后一个key与下一个叶子节点的第一个key
                 tlx_die_unless(key_lessequal(n->key(n->slotuse - 1),
                                              n->next_leaf->key(0)));
 
@@ -3694,7 +3696,7 @@ private:
             n = n->next_leaf;
         }
 
-        tlx_die_unless(testcount == size());
+        tlx_die_unless(testcount == size());	// 检查key的个数是否异常
     }
 
     //! \}
