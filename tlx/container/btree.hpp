@@ -281,6 +281,7 @@ private:
         LeafNode* next_leaf;
 
         //! Array of (key, data) pairs
+        // 疑问：当slot=node::slotuse时，不会越界吗？
         value_type slotdata[leaf_slotmax]; // NOLINT
 
         //! Set variables to initial values
@@ -425,7 +426,7 @@ public:
             if (curr_slot + 1u < curr_leaf->slotuse) {
                 ++curr_slot;
             }
-            else if (curr_leaf->next_leaf != nullptr) {
+            else if (curr_leaf->next_leaf != nullptr) {	// 指向了下个叶子节点
                 curr_leaf = curr_leaf->next_leaf;
                 curr_slot = 0;
             }
@@ -441,10 +442,10 @@ public:
         iterator operator ++ (int) {
             iterator tmp = *this;   // copy ourselves
 
-            if (curr_slot + 1u < curr_leaf->slotuse) {
+            if (curr_slot + 1u < curr_leaf->slotuse) {		// +1后还处于同一个节点内
                 ++curr_slot;
             }
-            else if (curr_leaf->next_leaf != nullptr) {
+            else if (curr_leaf->next_leaf != nullptr) {		// 不属于同一个节点，且后面还有叶节点，则转至下一个叶节点
                 curr_leaf = curr_leaf->next_leaf;
                 curr_slot = 0;
             }
@@ -1316,6 +1317,7 @@ private:
             for (unsigned short slot = 0; slot < leafnode->slotuse; ++slot)
             {
                 // data objects are deleted by LeafNode's destructor
+                // TODO: 叶节点的析构函数？待确认
             }
         }
         else
@@ -1394,6 +1396,7 @@ private:
     //! binary search with an optional linear self-verification. This is a
     //! template function, because the slotkey array is located at different
     //! places in LeafNode and InnerNode.
+    // 寻找第一个大于等于key的位置，返回该位置索引；std::lower_bound返回的是迭代器
     template <typename node_type>
     unsigned short find_lower(const node_type* n, const key_type& key) const {
         if (sizeof(*n) > traits::binsearch_threshold)
@@ -1418,6 +1421,7 @@ private:
                             " key " << key << " -> " << lo << " / " << hi);
 
             // verify result using simple linear search
+            // 普通的顺序遍历，以验证二分法得到的结果是否准确
             if (self_verify)
             {
                 unsigned short i = 0;
@@ -1441,6 +1445,7 @@ private:
     //! search with an optional linear self-verification. This is a template
     //! function, because the slotkey array is located at different places in
     //! LeafNode and InnerNode.
+    // 寻找第一个大于key的位置，返回该位置索引；类似std::upper_bound
     template <typename node_type>
     unsigned short find_upper(const node_type* n, const key_type& key) const {
         if (sizeof(*n) > traits::binsearch_threshold)
@@ -1519,6 +1524,7 @@ public:
 
     //! Non-STL function checking whether a key is in the B+ tree. The same as
     //! (find(k) != end()) or (count() != 0).
+    // 先从内部节点中找出key所在子树，直到叶节点；再在叶节点寻找是否存在
     bool exists(const key_type& key) const {
         const node* n = root_;
         if (!n) return false;
@@ -1526,7 +1532,7 @@ public:
         while (!n->is_leafnode())
         {
             const InnerNode* inner = static_cast<const InnerNode*>(n);
-            unsigned short slot = find_lower(inner, key);
+            unsigned short slot = find_lower(inner, key);	// 这一步为了先找到目标子树：找到第一个大于等于该key的位置,即为该key对应子树的索引
 
             n = inner->childid[slot];
         }
@@ -1600,7 +1606,7 @@ public:
 
         while (leaf && slot < leaf->slotuse && key_equal(key, leaf->key(slot)))
         {
-            ++num;
+            ++num;	// 统计查找到的次数并将位置slot后移一位后继续判断
             if (++slot >= leaf->slotuse)
             {
                 leaf = leaf->next_leaf;
@@ -1613,6 +1619,7 @@ public:
 
     //! Searches the B+ tree and returns an iterator to the first pair equal to
     //! or greater than key, or end() if all keys are smaller.
+    // 寻找第一组大于等于key的键值对，并返回其迭代器；这里返回的迭代器可直接定位取值到这对键值对
     iterator lower_bound(const key_type& key) {
         node* n = root_;
         if (!n) return end();
@@ -1692,6 +1699,7 @@ public:
     }
 
     //! Searches the B+ tree and returns both lower_bound() and upper_bound().
+    // 得到一个范围；如1,2,2,2,3,4中，若key=2，则可以获取到全部2
     std::pair<iterator, iterator> equal_range(const key_type& key) {
         return std::pair<iterator, iterator>(
             lower_bound(key), upper_bound(key));
@@ -1803,6 +1811,7 @@ private:
             std::copy(leaf->slotdata, leaf->slotdata + leaf->slotuse,
                       newleaf->slotdata);
 
+			// 这里的head_leaf_和tail_leaf_都是该函数调用者的,而非n这棵树的
             if (head_leaf_ == nullptr)
             {
                 head_leaf_ = tail_leaf_ = newleaf;
@@ -2050,7 +2059,7 @@ private:
 
             // move items and put data item into correct data slot
             TLX_BTREE_ASSERT(slot >= 0 && slot <= leaf->slotuse);
-
+			// 找到待插入位置slot后,先将slot位置后面的数据向后移一个位置(使用copy_backward实现这一移动)
             std::copy_backward(
                 leaf->slotdata + slot, leaf->slotdata + leaf->slotuse,
                 leaf->slotdata + leaf->slotuse + 1);
